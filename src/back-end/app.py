@@ -228,9 +228,9 @@ def rhyme(ngram: str):
         for ngram in iter_ngrams(tokenize(song['text']), len(endings)):
             try:
                 converted = [convert(x) for x in ngram]
-            except IndexError:
-                pass  # Some words dont' work with this algorithm.
-            filtered = list(map(lambda x: x[1].endswith(x[0]), zip(endings, converted)))
+                filtered = list(map(lambda x: x[1].endswith(x[0]), zip(endings, converted)))
+            except:
+                continue
             filtered = all(filtered)
             if filtered:
                 count = ngrams_found.get(ngram, 0)
